@@ -29,7 +29,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             
             <Expander Grid.Row="0"
@@ -42,27 +41,34 @@
                 <preferences:PreferencesView DataContext="{Binding Preferences}" />
             </Expander>
 
-            <Expander Grid.Row="1"
-                      Style="{StaticResource Page.Expander.Style}"
-                      IsExpanded="{Binding IsQuoteTabExpanded, Mode=TwoWay}"
-                      Visibility="{Binding IsPreferencesTabExpanded, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
-                <Expander.Header>
-                    <TextBlock Text="Quote" Style="{StaticResource ExpanderHeader.Textblock.Style}" />
-                </Expander.Header>
+            <Grid Grid.Row="1" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-                <quote:QuoteView DataContext="{Binding Quote}" />
-            </Expander>
+                <Expander Grid.Row="0" 
+                          Style="{StaticResource Page.Expander.Style}"
+                          IsExpanded="{Binding IsQuoteTabExpanded, Mode=TwoWay}"
+                          Visibility="{Binding IsPreferencesTabExpanded, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                    <Expander.Header>
+                        <TextBlock Text="Quote" Style="{StaticResource ExpanderHeader.Textblock.Style}"/>
+                    </Expander.Header>
 
-            <Expander Grid.Row="2"
-                      Style="{StaticResource Page.Expander.Style}"
-                      IsExpanded="{Binding IsOrderTabExpanded, Mode=TwoWay}"
-                      Visibility="{Binding IsPreferencesTabExpanded, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
-                <Expander.Header>
-                    <TextBlock Text="Order" Style="{StaticResource ExpanderHeader.Textblock.Style}" />
-                </Expander.Header>
-                
-                <order:OrderView DataContext="{Binding Order}" />
-            </Expander>
+                    <quote:QuoteView DataContext="{Binding Quote}" VerticalAlignment="Stretch" />
+                </Expander>
+
+                <Expander Grid.Row="1" 
+                          Style="{StaticResource Page.Expander.Style}"
+                          IsExpanded="{Binding IsOrderTabExpanded, Mode=TwoWay}"
+                          Visibility="{Binding IsPreferencesTabExpanded, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                    <Expander.Header>
+                        <TextBlock Text="Order" Style="{StaticResource ExpanderHeader.Textblock.Style}" />
+                    </Expander.Header>
+
+                    <order:OrderView DataContext="{Binding Order}" />
+                </Expander>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

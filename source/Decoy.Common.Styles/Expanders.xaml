@@ -8,7 +8,7 @@
     <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
     
     <ControlTemplate x:Key="Expander.ToggleButton.ControlTemplate" TargetType="{x:Type ToggleButton}">
-        <Grid>
+        <Grid Background="{TemplateBinding Background}">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CheckStates">
                     <VisualState x:Name="Checked">
@@ -48,13 +48,13 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="32" />
-                            <RowDefinition x:Name="ContentRow" Height="*" />
+                            <RowDefinition x:Name="ContentRow" Height="0" />
                         </Grid.RowDefinitions>
 
                         <Border Grid.Row="0" 
                                 BorderBrush="{StaticResource Brush.Border.Divider}" 
                                 Background="{StaticResource Brush.Expander.Header}"
-                                BorderThickness="1">
+                                BorderThickness="0.5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -66,18 +66,20 @@
                                 <ToggleButton Grid.Column="1" 
                                               OverridesDefaultStyle="True" 
                                               Margin="0, 0, 0, 5"
+                                              HorizontalAlignment="Stretch"
+                                              Background="{StaticResource Brush.Expander.Header}"
                                               Visibility="{Binding IsPreferencesTabExpanded, Converter={StaticResource InverseBooleanToVisibilityConverter} }"
                                               Template="{StaticResource Expander.ToggleButton.ControlTemplate}" 
                                               IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                             </Grid>
                         </Border>
 
-                        <ContentPresenter x:Name="Content" Grid.Row="1" VerticalAlignment="Stretch" Visibility="Collapsed" />
+                        <ContentPresenter x:Name="Content" Grid.Row="1" VerticalAlignment="Stretch"/>
                     </Grid>
                     
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsExpanded" Value="True">
-                            <Setter TargetName="Content" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="ContentRow" Property="Height" Value="*" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
