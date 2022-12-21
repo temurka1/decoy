@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Decoy.Common.Styles;component/Typography.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Decoy.Common.Styles;component/Icons.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Decoy.Common.Styles;component/Brushes.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Decoy.Common.Styles;component/Buttons.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Decoy.Common.Styles;component/TextBoxes.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Decoy.Common.Styles;component/ComboBoxes.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Decoy.Common.Styles;component/ListBoxes.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Decoy.Common.Styles;component/ListViews.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Decoy.Common.Styles;component/Expanders.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Decoy.Common.Styles;component/DataGrids.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

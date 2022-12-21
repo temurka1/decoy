@@ -1,0 +1,68 @@
+﻿<Window x:Class="Decoy.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:converters="clr-namespace:Decoy.Common.Converters;assembly=Decoy.Common"
+        xmlns:preferences="clr-namespace:Decoy.Preferences" 
+        xmlns:quote="clr-namespace:Decoy.Quote" 
+        xmlns:order="clr-namespace:Decoy.Order" 
+        xmlns:decoy="clr-namespace:Decoy"
+        WindowStartupLocation="CenterScreen"
+        MinWidth="1190"
+        Width="1190"
+        Height="934"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+    </Window.Resources>
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <decoy:HeaderView Grid.Row="0" DataContext="{Binding Header}" />
+
+        <Grid Grid.Row="1" Margin="0, 15, 0, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Expander Grid.Row="0"
+                      Style="{StaticResource Page.Expander.Style}"
+                      IsExpanded="{Binding IsPreferencesTabExpanded, Mode=TwoWay}">
+                <Expander.Header>
+                    <TextBlock Text="Preferences" Style="{StaticResource ExpanderHeader.Textblock.Style}" />
+                </Expander.Header>
+                
+                <preferences:PreferencesView DataContext="{Binding Preferences}" />
+            </Expander>
+
+            <Expander Grid.Row="1"
+                      Style="{StaticResource Page.Expander.Style}"
+                      IsExpanded="{Binding IsQuoteTabExpanded, Mode=TwoWay}"
+                      Visibility="{Binding IsPreferencesTabExpanded, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                <Expander.Header>
+                    <TextBlock Text="Quote" Style="{StaticResource ExpanderHeader.Textblock.Style}" />
+                </Expander.Header>
+
+                <quote:QuoteView DataContext="{Binding Quote}" />
+            </Expander>
+
+            <Expander Grid.Row="2"
+                      Style="{StaticResource Page.Expander.Style}"
+                      IsExpanded="{Binding IsOrderTabExpanded, Mode=TwoWay}"
+                      Visibility="{Binding IsPreferencesTabExpanded, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                <Expander.Header>
+                    <TextBlock Text="Order" Style="{StaticResource ExpanderHeader.Textblock.Style}" />
+                </Expander.Header>
+                
+                <order:OrderView DataContext="{Binding Order}" />
+            </Expander>
+        </Grid>
+    </Grid>
+</Window>

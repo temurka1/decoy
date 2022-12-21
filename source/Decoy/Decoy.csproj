@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DryIoc.dll" Version="4.7.7" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+    <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Decoy.Common.Styles\Decoy.Common.Styles.csproj" />
+    <ProjectReference Include="..\Decoy.Common\Decoy.Common.csproj" />
+    <ProjectReference Include="..\Decoy.Infrastructure\Decoy.Infrastructure.csproj" />
+    <ProjectReference Include="..\Decoy.ViewModels\Decoy.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

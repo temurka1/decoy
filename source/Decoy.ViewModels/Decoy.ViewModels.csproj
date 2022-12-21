@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmValidation" Version="3.1.2" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+    <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Decoy.Common\Decoy.Common.csproj" />
+    <ProjectReference Include="..\Decoy.Domain\Decoy.Domain.csproj" />
+    <ProjectReference Include="..\Decoy.Infrastructure\Decoy.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
