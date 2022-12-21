@@ -1,0 +1,20 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/source/.vs
+/source/Decoy/.vs
+/source/Decoy/bin/Debug/net7.0-windows
+/source/Decoy/obj
+/source/Decoy.Common/bin/Debug/net7.0-windows
+/source/Decoy.Common/obj
+/source/Decoy.Common.Styles/bin/Debug/net7.0-windows
+/source/Decoy.Common.Styles/obj
+/source/Decoy.Domain/bin/Debug
+/source/Decoy.Domain/obj
+/source/Decoy.Infrastructure/bin/Debug
+/source/Decoy.Infrastructure/obj
+/source/Decoy.ViewModels/bin/Debug/net7.0-windows
+/source/Decoy.ViewModels/obj
+/source/Decoy.Common.Styles/Decoy.Common.Styles.csproj.user
+/source/Decoy/Decoy.csproj.user
