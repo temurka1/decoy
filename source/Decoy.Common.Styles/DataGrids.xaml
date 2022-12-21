@@ -14,5 +14,6 @@
         <Setter Property="HeadersVisibility" Value="Column" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
     </Style>
 </ResourceDictionary>

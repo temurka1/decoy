@@ -9,8 +9,8 @@
         xmlns:order="clr-namespace:Decoy.Order" 
         xmlns:decoy="clr-namespace:Decoy"
         WindowStartupLocation="CenterScreen"
-        MinWidth="1190"
-        Width="1190"
+        MinWidth="1221"
+        Width="1221"
         Height="934"
         mc:Ignorable="d">
     <Window.Resources>

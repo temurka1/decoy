@@ -213,6 +213,22 @@
                     Value = "13",
                     CostImpact = 220.12M,
                     TimeImpact = 0,
+                },
+                new QuoteItem
+                {
+                    ManufacturingStage = "Components",
+                    Parameter = "LOPATA-28",
+                    Value = "22",
+                    CostImpact = 1420.26M,
+                    TimeImpact = 0,
+                },
+                new QuoteItem
+                {
+                    ManufacturingStage = "Components",
+                    Parameter = "Stonefist L42",
+                    Value = "42",
+                    CostImpact = 879M,
+                    TimeImpact = 0,
                 }
             };
 

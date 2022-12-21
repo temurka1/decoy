@@ -15,6 +15,7 @@
             </CollectionViewSource.GroupDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -27,6 +28,10 @@
                   Style="{StaticResource Standard.DataGrid.Style}"
                   BorderBrush="{StaticResource Brush.Border.Divider}"
                   ItemsSource="{Binding Source={StaticResource Data}}">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource Standard.ScrollBar.Style}" />
+            </DataGrid.Resources>
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Parameter}" Header="Parameter" Width="*" />
                 <DataGridTextColumn Binding="{Binding Value}" Header="Value" Width="*" />
