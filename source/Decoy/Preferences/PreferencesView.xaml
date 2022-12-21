@@ -25,7 +25,6 @@
 
         <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource Toggle.ListBox.Style}">
             <Setter Property="Margin" Value="5, 5, 0, 0" />
-            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         </Style>
 
         <DataTemplate x:Key="ComboBox.ColorPicker.ItemTemplate">
@@ -170,24 +169,28 @@
             <TextBlock Grid.Row="7" Grid.Column="1" Text="Lead Free" />
             <ListBox Grid.Row="7" 
                      Grid.Column="2" 
+                     AlternationCount="{Binding SpecialPreferences.LeadFreeValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.LeadFreeValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedLeadFree, Mode=TwoWay}"/>
 
             <TextBlock Grid.Row="8" Grid.Column="1" Text="IPC Class" />
             <ListBox Grid.Row="8" 
                      Grid.Column="2" 
+                     AlternationCount="{Binding SpecialPreferences.IpcClassValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.IpcClassValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedIpcClass, Mode=TwoWay}" />
 
             <TextBlock Grid.Row="9" Grid.Column="1" Text="ITAR" />
             <ListBox Grid.Row="9" 
                      Grid.Column="2" 
+                     AlternationCount="{Binding SpecialPreferences.ItarValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.ItarValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedItar, Mode=TwoWay}" />
 
             <TextBlock Grid.Row="10" Grid.Column="1" Text="Flux type" />
             <ListBox Grid.Row="10" 
                      Grid.Column="2" 
+                     AlternationCount="{Binding SpecialPreferences.FluxTypeValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.FluxTypeValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedFluxType, Mode=TwoWay}" />
 
@@ -215,18 +218,21 @@
             <TextBlock Grid.Row="14" Grid.Column="1" Text="Controlled Impendance" />
             <ListBox Grid.Row="14" 
                      Grid.Column="2" 
+                     AlternationCount="{Binding SpecialPreferences.ControlledImpendanceValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.ControlledImpendanceValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedControlledImpendance, Mode=TwoWay}" />
 
             <TextBlock Grid.Row="15" Grid.Column="1" Text="Tenting for Vias" />
             <ListBox Grid.Row="15" 
                      Grid.Column="2" 
+                     AlternationCount="{Binding SpecialPreferences.TentingForViasValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.TentingForViasValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedTentingForVias, Mode=TwoWay}" />
 
             <TextBlock Grid.Row="16" Grid.Column="1" Text="Stackup" />
             <ListBox Grid.Row="16" 
                      Grid.Column="2" 
+                     AlternationCount="{Binding SpecialPreferences.StackupValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.StackupValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedStackup, Mode=TwoWay}" />
 
