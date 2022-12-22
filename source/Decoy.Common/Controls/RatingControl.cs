@@ -17,7 +17,14 @@
             DependencyProperty.Register("RatedBrush", typeof(Brush), typeof(RatingControl), new FrameworkPropertyMetadata(Brushes.Green, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty UnratedBrushProperty =
-            DependencyProperty.Register("UnratedBrush", typeof(Brush), typeof(RatingControl), new FrameworkPropertyMetadata(Brushes.Black, FrameworkPropertyMetadataOptions.AffectsRender));
+            DependencyProperty.Register("UnratedBrush", typeof(Brush), typeof(RatingControl), new FrameworkPropertyMetadata(Brushes.Black, FrameworkPropertyMetadataOptions.AffectsRender)); 
+        
+        public static readonly DependencyProperty RadiusProperty =
+            DependencyProperty.Register("Radius", typeof(double), typeof(RatingControl), new FrameworkPropertyMetadata(4.0, FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty HorizontalPointMarginProperty =
+            DependencyProperty.Register("HorizontalPointMargin", typeof(double), typeof(RatingControl), new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
+
         #endregion
 
         #region Properties
@@ -45,6 +52,17 @@
             set => SetValue(UnratedBrushProperty, value);
         }
 
+        public double Radius
+        {
+            get => (double)GetValue(RadiusProperty);
+            set => SetValue(RadiusProperty, value);
+        }
+        public double HorizontalPointMargin
+        {
+            get => (double)GetValue(HorizontalPointMarginProperty);
+            set => SetValue(HorizontalPointMarginProperty, value);
+        }
+
         #endregion
 
         #region Methods
@@ -56,19 +74,19 @@
             var ratedPen = new Pen(RatedBrush, snap);
             var unratedPen = new Pen(UnratedBrush, snap);
 
-            var width = 1.0;
+            var width = Radius / 2.0;
             var y = ActualHeight / 2.0;
 
             for (int i = 0; i < Rating; i++)
             {
                 drawingContext.DrawEllipse(RatedBrush, ratedPen, new Point(width, y), 4, 4);
-                width += 10;
+                width += 2 * Radius + HorizontalPointMargin;
             }
 
             for (int i = Rating; i < MaxRating; i++)
             {
                 drawingContext.DrawEllipse(UnratedBrush, unratedPen, new Point(width, y), 4, 4);
-                width += 10;
+                width += 2 * Radius + HorizontalPointMargin;
             }
         }
 

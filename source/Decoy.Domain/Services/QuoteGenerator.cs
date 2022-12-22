@@ -14,6 +14,26 @@
 
         public IEnumerable<QuoteItem> GetQuote(ProjectSettings projectSettings)
         {
+            var materialValidValues = new List<ValidValue>
+            {
+                new ValidValue
+                {
+                    Id = new Guid("BDFC5771-AF67-4336-9255-5A78389B110C"),
+                    Value = "Arlon",
+                    CostImpactRating = 3,
+                    TimeImpactRating = 3,
+                },
+                new ValidValue
+                {
+                    Id = new Guid("786AC9DE-4411-4579-85FA-DEEDDB7E8774"),
+                    Value = "Krypnonite",
+                    CostImpactRating = 5,
+                    TimeImpactRating = 4,
+                },
+            };
+
+            var selectedMaterialValue = materialValidValues.First(x => x.Value == projectSettings.Material.Name);
+
             var quoteItems = new List<QuoteItem>
             {
                 new QuoteItem
@@ -28,49 +48,53 @@
                         new QuoteDetailsItem
                         {
                             Operation = "Board Thickness",
-                            OperationDetails = $"{projectSettings.BoardThickness}mm",
+                            Value = $"{projectSettings.BoardThickness}mm",
                             CostImpactRating = 4,
                             TimeImpactRating = 1
                         },
                         new QuoteDetailsItem
                         {
                             Operation = "Board Dimensions",
-                            OperationDetails = "61.72x147.84mm",
+                            Value = "61.72x147.84mm",
                             CostImpactRating = 4,
                             TimeImpactRating = 1
                         },
                         new QuoteDetailsItem
                         {
                             Operation = "Layers",
-                            OperationDetails = "10",
+                            Value = "10",
+                            ValueId = new Guid("1ADD562F-A2C8-4C85-A390-EB6A1E88E2FD"),
                             CostImpactRating = 3,
                             TimeImpactRating = 2,
                             ValidValues = new List<ValidValue>
                             {
                                 new ValidValue
                                 {
-                                     Value = "up to 8",
-                                     CostImpact = 1,
-                                     TimeImpact = 1,
+                                    Id = new Guid("A52FDD3A-E4A5-458B-A074-6E511B76B0B4"),
+                                    Value = "up to 8",
+                                    CostImpactRating = 1,
+                                    TimeImpactRating = 1,
                                 },
                                 new ValidValue
                                 {
-                                     Value = "up to 18",
-                                     CostImpact = 2,
-                                     TimeImpact = 2,
+                                    Id = new Guid("1ADD562F-A2C8-4C85-A390-EB6A1E88E2FD"),
+                                    Value = "up to 18",
+                                    CostImpactRating = 2,
+                                    TimeImpactRating = 2,
                                 },                 
                                 new ValidValue
                                 {
-                                     Value = "18-64",
-                                     CostImpact = 3,
-                                     TimeImpact = 3,
+                                    Id = new Guid("A32A66C4-108A-40D7-B166-F3BBED30B6EA"),
+                                    Value = "18-64",
+                                    CostImpactRating = 3,
+                                    TimeImpactRating = 3,
                                 }
                             }
                         },
                         new QuoteDetailsItem
                         {
                             Operation = "Number of Holes Per Board",
-                            OperationDetails = "40",
+                            Value = "40",
                             CostImpactRating = 2,
                             TimeImpactRating = 3
                         }
@@ -96,7 +120,7 @@
                         new QuoteDetailsItem
                         {
                             Operation = "Surface Finish",
-                            OperationDetails = $"{projectSettings.SufraceFinish.Name}",
+                            Value = $"{projectSettings.SufraceFinish.Name}",
                             CostImpactRating = 3,
                             TimeImpactRating = 3,
                         }
@@ -114,9 +138,11 @@
                         new QuoteDetailsItem
                         {
                             Operation = "Material",
-                            OperationDetails = $"{projectSettings.Material.Name}",
-                            CostImpactRating = 3,
-                            TimeImpactRating = 4,
+                            Value = projectSettings.Material.Name,
+                            ValueId = selectedMaterialValue.Id,
+                            CostImpactRating = selectedMaterialValue.CostImpactRating,
+                            TimeImpactRating = selectedMaterialValue.TimeImpactRating,
+                            ValidValues = materialValidValues
                         }
                     }
                 },
@@ -133,7 +159,7 @@
                         new QuoteDetailsItem
                         {
                             Operation = "Packaging",
-                            OperationDetails = $"{projectSettings.BoardsQuantity} packages",
+                            Value = $"{projectSettings.BoardsQuantity} packages",
                             CostImpactRating = 1,
                             TimeImpactRating = 2,
                         }
@@ -160,7 +186,7 @@
                         new QuoteDetailsItem
                         {
                             Operation = "Soldering",
-                            OperationDetails = $"7",
+                            Value = $"7",
                             CostImpactRating = 1,
                             TimeImpactRating = 3,
                         }

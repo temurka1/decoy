@@ -6,7 +6,9 @@
 
         public string Operation { get; set; }
 
-        public string OperationDetails { get; set; }
+        public string Value { get; set; }
+
+        public Guid ValueId { get; set; }
 
         public int TimeImpactRating { get; set; }
 

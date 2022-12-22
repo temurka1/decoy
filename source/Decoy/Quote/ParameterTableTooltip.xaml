@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Decoy.Quote.ParameterTableTooltip"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:Decoy.Common.Controls;assembly=Decoy.Common" 
+             xmlns:converters="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    
+    <Grid Margin="5, 5, 5, 5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" 
+                   Text="Valid Values" 
+                   Style="{StaticResource Emphasized.TextBlock.Style}" />
+
+        <ListView Grid.Row="3" 
+                  Grid.Column="0" 
+                  Grid.ColumnSpan="2"
+                  Background="Transparent"
+                  BorderThickness="0"
+                  Margin="0, 10, 0, 0"
+                  ItemsSource="{Binding Values}">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource NoHeader.GridViewColumnHeader.Style}">
+                    <GridViewColumn Header="" Width="25">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Visibility="{Binding IsCurrent, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                       Source="{StaticResource Icon.Checkmark}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
+                    <GridViewColumn Header="" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Value}" Style="{StaticResource Standard.Textblock.Style}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="" Width="60">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <controls:RatingControl Rating="{Binding TimeImpactRating}" 
+                                                        RatedBrush="{StaticResource Brush.TextBlock.TimeImpact}" 
+                                                        UnratedBrush="{StaticResource Brush.Border.Divider}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+
+                    <GridViewColumn Header="" Width="60">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <controls:RatingControl Rating="{Binding CostImpactRating}" 
+                                                        RatedBrush="{StaticResource Brush.TextBlock.CostImpact}" 
+                                                        UnratedBrush="{StaticResource Brush.Border.Divider}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

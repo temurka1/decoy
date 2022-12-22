@@ -47,4 +47,12 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
+
+    <DrawingImage x:Key="Icon.Checkmark">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V20 H20 V0 H0 Z">
+                <GeometryDrawing Brush="#FF212121" Geometry="F1 M20,20z M0,0z M7.03212,13.9072L3.56056,10.0017C3.28538,9.69214 2.81132,9.66425 2.50174,9.93944 2.19215,10.2146 2.16426,10.6887 2.43945,10.9983L6.43945,15.4983C6.72614,15.8208,7.2252,15.8355,7.53034,15.5303L18.0303,5.03033C18.3232,4.73744 18.3232,4.26256 18.0303,3.96967 17.7374,3.67678 17.2626,3.67678 16.9697,3.96967L7.03212,13.9072z" />
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
 </ResourceDictionary>

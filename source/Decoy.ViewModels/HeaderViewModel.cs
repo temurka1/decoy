@@ -32,7 +32,7 @@
         public HeaderViewModel()
         {
             _message = $"Describe your design and receive real-time design feedback for manufacturing and{Environment.NewLine}component sourcing. If you update your design, we will provide an updated quote.";
-            _updateStatus = string.Empty;
+            _updateStatus = "Everything is up to date ✓";
         }
 
         #endregion

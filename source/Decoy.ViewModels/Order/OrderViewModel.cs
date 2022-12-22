@@ -1,5 +1,6 @@
 ﻿namespace Decoy.ViewModels.Order
 {
+    using Prism.Commands;
     using Prism.Mvvm;
 
     public class OrderViewModel : BindableBase
@@ -18,6 +19,8 @@
             set => SetProperty(ref _message, value);
         }
 
+        public DelegateCommand MakeOrderCommand { get; }
+
         #endregion
 
         #region Constructors
@@ -25,6 +28,16 @@
         public OrderViewModel()
         {
             Message = $"There are no orders yet.{Environment.NewLine}Your orders will appear here.";
+
+            MakeOrderCommand = new DelegateCommand(ExecuteMakeOrderCommand);
+        }
+
+        #endregion
+
+        #region Methods
+
+        private async void ExecuteMakeOrderCommand()
+        {
         }
 
         #endregion

@@ -20,7 +20,6 @@
         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource Wide.ComboBox.Style}">
             <Setter Property="Margin" Value="5, 5, 0, 0" />
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
 
         <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource Toggle.ListBox.Style}">

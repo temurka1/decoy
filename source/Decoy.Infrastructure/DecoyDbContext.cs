@@ -33,7 +33,7 @@
                 new Material
                 {
                     Name = "Krypnonite",
-                    CostImpact = 1000M,
+                    CostImpact = 10000M,
                     TimeImpact = 10
                 }
             };

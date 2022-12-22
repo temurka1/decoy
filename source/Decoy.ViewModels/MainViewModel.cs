@@ -65,7 +65,6 @@
                 if (SetProperty(ref _isPreferencesTabExpanded, value))
                 {
                     IsQuoteTabExpanded = !_isPreferencesTabExpanded;
-                    IsOrderTabExpanded = !_isPreferencesTabExpanded;
                 }
             }
         }
@@ -105,7 +104,8 @@
             Order = new OrderViewModel();
 
             UpdateCommand = new DelegateCommand(ExecuteUpdateCommand);
-            PlaceOrderCommand = new DelegateCommand(ExecutePlaceOrderCommand);
+            PlaceOrderCommand = new DelegateCommand(ExecutePlaceOrderCommand, CanExecutePlaceOrderCommand)
+                .ObservesProperty(() => IsPreferencesTabExpanded);
 
             ResetCommand = new DelegateCommand(ExecuteResetCommand);
             SaveCommand = new DelegateCommand(ExecuteSaveCommand, CanExecuteSaveCommand)
@@ -127,8 +127,16 @@
             Header.UpdateStatus = "Everything is up to date ✓";
         }
 
+        private bool CanExecutePlaceOrderCommand()
+        {
+            return !IsPreferencesTabExpanded;
+        }
+
         private void ExecutePlaceOrderCommand()
         {
+            IsOrderTabExpanded = true;
+
+            Order.Message = $"Your order is here.{Environment.NewLine}Click button below to confirm it!";
         }
 
         private void ExecuteResetCommand()
@@ -144,6 +152,7 @@
         private void ExecuteSaveCommand()
         {
             IsPreferencesTabExpanded = false;
+            IsOrderTabExpanded = false;
 
             Quote.Update();
 

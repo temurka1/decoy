@@ -15,7 +15,7 @@
                    TextAlignment="Center"/>
 
         <Button Content="Make a Current Order"
-                Command="{Binding MakeOrder}"
+                Command="{Binding MakeOrderCommand}"
                 Style="{StaticResource Wide.Button.Style}" 
                 Margin="0, 10, 0, 0"/>
     </WrapPanel>

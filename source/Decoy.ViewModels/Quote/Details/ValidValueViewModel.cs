@@ -2,29 +2,22 @@
 {
     using Prism.Mvvm;
     using Decoy.Domain.Models;
-    using System.Collections.ObjectModel;
 
-    public class DetailsItemViewModel : BindableBase
+    public class ValidValueViewModel : BindableBase
     {
         #region Fields
 
-        public string _operation;
         public string _value;
+        public string _operationDetails;
 
         private int _timeImpactRating;
         private int _costImpactRating;
 
-        private ValidValuesViewModel _validValues;
+        private bool _isCurrent;
 
         #endregion
 
         #region Properties
-
-        public string Operation 
-        { 
-            get => _operation; 
-            set => SetProperty(ref _operation, value); 
-        }
 
         public string Value
         {
@@ -44,25 +37,23 @@
             set => SetProperty(ref _costImpactRating, value);
         }
 
-        public ValidValuesViewModel ValidValues
+        public bool IsCurrent
         {
-            get => _validValues;
-            set => SetProperty(ref _validValues, value);
+            get => _isCurrent;
+            set => SetProperty(ref _isCurrent, value);
         }
 
         #endregion
 
         #region Constructors
 
-        public DetailsItemViewModel(QuoteDetailsItem details) 
+        public ValidValueViewModel(ValidValue validValue, bool isCurrent)
         {
-            _operation = details.Operation;
-            _value = details.Value;
+            _value = validValue.Value;
+            _costImpactRating = validValue.CostImpactRating;
+            _timeImpactRating = validValue.TimeImpactRating;
 
-            _costImpactRating = details.CostImpactRating;
-            _timeImpactRating = details.TimeImpactRating;
-
-            _validValues = new ValidValuesViewModel(details);
+            _isCurrent = isCurrent;
         }
 
         #endregion

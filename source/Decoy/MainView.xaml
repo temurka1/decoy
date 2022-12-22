@@ -66,7 +66,7 @@
                         <TextBlock Text="Order" Style="{StaticResource ExpanderHeader.Textblock.Style}" />
                     </Expander.Header>
 
-                    <order:OrderView DataContext="{Binding Order}" />
+                    <order:OrderView DataContext="{Binding Order}" Height="310" />
                 </Expander>
             </Grid>
         </Grid>

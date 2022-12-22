@@ -4,11 +4,13 @@
     {
         #region Properties
 
+        public Guid Id { get; set; }
+
         public string Value { get; set; }
 
-        public decimal CostImpact { get; set; }
+        public int CostImpactRating { get; set; }
 
-        public int TimeImpact { get; set; }
+        public int TimeImpactRating { get; set; }
 
         #endregion
     }

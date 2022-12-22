@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:controls="clr-namespace:Decoy.Common.Controls;assembly=Decoy.Common"
+             xmlns:controls="clr-namespace:Decoy.Common.Controls;assembly=Decoy.Common" 
+             xmlns:local="clr-namespace:Decoy.Quote"
              mc:Ignorable="d">
     <Border BorderBrush="{StaticResource Brush.Border.Divider}" BorderThickness="1" Margin="5">
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
@@ -67,12 +68,11 @@
 
                                 <DataGrid Grid.Row="2"
                                           Margin="0"
-                                          Style="{StaticResource Standard.DataGrid.Style}"
-                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                          Style="{StaticResource NoColumnHeaders.Datagrid.Style}"
                                           ItemsSource="{Binding Items}">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding Operation}" Header="" Width="200"/>
-                                        <DataGridTextColumn Binding="{Binding OperationDetails}" Header="" Width="200"/>
+                                        <DataGridTextColumn Binding="{Binding Value}" Header="" Width="200"/>
 
                                         <DataGridTemplateColumn Header="Time Impact" Width="70">
                                             <DataGridTemplateColumn.CellTemplate>
@@ -95,32 +95,13 @@
                                         </DataGridTemplateColumn>
                                     </DataGrid.Columns>
 
-                                    <DataGrid.ColumnHeaderStyle>
-                                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                                            <Setter Property="SeparatorBrush" Value="Transparent" />
-                                            <Setter Property="BorderBrush" Value="Transparent" />
-                                            <Setter Property="Background" Value="White" />
-                                            <Setter Property="Height" Value="32" />
-                                        </Style>
-                                    </DataGrid.ColumnHeaderStyle>
-
-                                    <DataGrid.CellStyle>
-                                        <Style TargetType="{x:Type DataGridCell}">
-                                            <Style.Triggers>
-                                                <Trigger Property="DataGridCell.IsSelected" Value="True">
-                                                    <Setter Property="BorderBrush" Value="Transparent"/>
-                                                    <Setter Property="Foreground" Value="{StaticResource Brush.TextBlock.Foreground}"/>
-                                                    <Setter Property="Background" Value="Transparent"/>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </DataGrid.CellStyle>
-
                                     <DataGrid.RowStyle>
                                         <Style TargetType="DataGridRow">
                                             <Setter Property="ToolTip">
                                                 <Setter.Value>
-                                                    <TextBlock Text="{Binding ToolTipText}" />
+                                                    <ToolTip DataContext="{Binding Path=PlacementTarget.DataContext.ValidValues, RelativeSource={RelativeSource Self}}">
+                                                        <local:ParameterTableTooltip />
+                                                    </ToolTip>
                                                 </Setter.Value>
                                             </Setter>
                                         </Style>
