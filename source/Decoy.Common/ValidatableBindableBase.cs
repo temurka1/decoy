@@ -74,12 +74,12 @@
             return Validator.ValidateAllAsync();
         }
 
-        public IEnumerable GetErrors(string propertyName)
+        public IEnumerable GetErrors(string? propertyName)
         {
             return NotifyDataErrorInfoAdapter.GetErrors(propertyName);
         }
 
-        private void HandleErrorsChanged(object sender, DataErrorsChangedEventArgs e)
+        private void HandleErrorsChanged(object? sender, DataErrorsChangedEventArgs e)
         {
             HasErrors = NotifyDataErrorInfoAdapter.HasErrors;
             RaisePropertyChanged(e.PropertyName);

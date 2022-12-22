@@ -109,7 +109,8 @@
 
             ResetCommand = new DelegateCommand(ExecuteResetCommand);
             SaveCommand = new DelegateCommand(ExecuteSaveCommand, CanExecuteSaveCommand)
-                .ObservesProperty(() => Preferences.ProjectBasics.HasErrors);
+                .ObservesProperty(() => Preferences.ProjectBasics.HasErrors)
+                .ObservesProperty(() => Preferences.BoardPreferences.HasErrors);
 
             IsPreferencesTabExpanded = true;
         }
@@ -146,7 +147,7 @@
 
         private bool CanExecuteSaveCommand()
         {
-            return !Preferences.ProjectBasics.HasErrors;
+            return !Preferences.ProjectBasics.HasErrors && !Preferences.BoardPreferences.HasErrors;
         }
 
         private void ExecuteSaveCommand()

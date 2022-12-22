@@ -16,5 +16,6 @@
         <Setter Property="AcceptsReturn" Value="True" />
         <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="Height" Value="50" />
+        <Setter Property="Padding" Value="2" />
     </Style>
 </ResourceDictionary>

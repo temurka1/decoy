@@ -57,7 +57,7 @@ namespace Decoy.Common.Behaviors
             }
         }
 
-        void OnPreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        void OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !Regex.IsMatch(e.Text, RegularExpression);
         }
