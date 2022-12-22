@@ -10,6 +10,7 @@
         xmlns:decoy="clr-namespace:Decoy"
         WindowStartupLocation="CenterScreen"
         MinWidth="1221"
+        MinHeight="934"
         Width="1221"
         Height="934"
         mc:Ignorable="d">

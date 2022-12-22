@@ -6,9 +6,9 @@
              xmlns:controls="clr-namespace:Decoy.Common.Controls;assembly=Decoy.Common" 
              xmlns:local="clr-namespace:Decoy.Quote"
              mc:Ignorable="d">
-    <Border BorderBrush="{StaticResource Brush.Border.Divider}" BorderThickness="1" Margin="5">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
-            <Grid Grid.Column="1" Margin="5, 0, 5, 0">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
+        <Border BorderBrush="{StaticResource Brush.Border.Divider}" BorderThickness="1" Margin="5">
+            <Grid Margin="5, 0, 5, 0" HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -112,6 +112,6 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-        </ScrollViewer>
-    </Border>
+        </Border>
+    </ScrollViewer>
 </UserControl>

@@ -12,7 +12,7 @@
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <quote:ParameterTableView Grid.Row="0" 
@@ -21,6 +21,8 @@
         
         <quote:ParameterPanelView Grid.Row="0" 
                                   Grid.Column="1" 
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="Stretch"
                                   DataContext="{Binding ParameterPanel}" />
     </Grid>
 </UserControl>
