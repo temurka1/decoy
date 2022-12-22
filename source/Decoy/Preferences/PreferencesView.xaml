@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:converters="clr-namespace:Decoy.Common.Converters;assembly=Decoy.Common"
+             xmlns:converters="clr-namespace:Decoy.Common.Converters;assembly=Decoy.Common" xmlns:interactivity="http://schemas.microsoft.com/xaml/behaviors" xmlns:behaviors="clr-namespace:Decoy.Common.Behaviors;assembly=Decoy.Common"
              mc:Ignorable="d">
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Standard.Textblock.Style}">
@@ -109,7 +109,11 @@
             <TextBlock Grid.Row="2" Grid.Column="1" Text="Boards Quantity" />
             <TextBox Grid.Row="2" 
                      Grid.Column="2" 
-                     Text="{Binding ProjectBasics.BoardsQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding ProjectBasics.BoardsQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:TextBoxAllowedInputBehavior RegularExpression="^[0-9.\-]+$" />
+                </interactivity:Interaction.Behaviors>
+            </TextBox>
 
             <!-- #endregion -->
 
@@ -118,7 +122,11 @@
             <TextBlock Grid.Row="3" Grid.Column="1" Text="Board Thickness" />
             <TextBox Grid.Row="3" 
                      Grid.Column="2" 
-                     Text="{Binding BoardPreferences.BoardThickness, Mode=TwoWay, StringFormat={}{0}mm, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MmToDecimalConverter}}"/>
+                     Text="{Binding BoardPreferences.BoardThickness, Mode=TwoWay, StringFormat={}{0}mm, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MmToDecimalConverter}}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:TextBoxAllowedInputBehavior RegularExpression="^[0-9.\-]+$" />
+                </interactivity:Interaction.Behaviors>
+            </TextBox>
 
             <TextBlock Grid.Row="4" Grid.Column="1" Text="Material" />
             <ComboBox Grid.Row="4" 
