@@ -41,14 +41,11 @@
         <converters:MmToDecimalConverter x:Key="MmToDecimalConverter" />
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid Grid.Row="0" Margin="10">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -77,17 +74,17 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"  Orientation="Vertical">
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Orientation="Vertical">
                 <TextBlock Text="Project Basics" Style="{StaticResource Emphasized.TextBlock.Style}" />
                 <TextBlock Text="Preferences on this page supersede design file notes." Style="{StaticResource Standard.Textblock.Style}" />
             </StackPanel>
 
-            <StackPanel Grid.Row="3" Grid.Column="0" Grid.RowSpan="4" Orientation="Vertical">
+            <StackPanel Grid.Row="4" Grid.Column="0" Grid.RowSpan="4" Orientation="Vertical" Margin="0, 10, 0, 0">
                 <TextBlock Text="Important Board Preferences" Style="{StaticResource Emphasized.TextBlock.Style}" />
                 <TextBlock Text="Preferences on this page supersede design file notes." Style="{StaticResource Standard.Textblock.Style}" />
             </StackPanel>
 
-            <StackPanel Grid.Row="7" Grid.Column="0" Orientation="Vertical">
+            <StackPanel Grid.Row="9" Grid.Column="0" Orientation="Vertical" Margin="0, 10, 0, 0">
                 <TextBlock Text="Special Board Preferences" Style="{StaticResource Emphasized.TextBlock.Style}" />
                 <TextBlock Text="Preferences on this page supersede design file notes." Style="{StaticResource Standard.Textblock.Style}" />
             </StackPanel>
@@ -98,8 +95,8 @@
             <TextBox Grid.Row="0" 
                      Grid.Column="2" 
                      Text="{Binding ProjectBasics.ProjectName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                     Style="{StaticResource Wide.TextBox.Style}" 
-                     Margin="5, 5, 0, 0"/>
+                     Style="{StaticResource Wide.TextBox.Style}"
+                     Margin="5, 0, 0, 0"/> 
 
             <TextBlock Grid.Row="1" Grid.Column="1" Text="Zipcode" />
             <TextBox Grid.Row="1" 
@@ -117,53 +114,61 @@
 
             <!-- #endregion -->
 
+            <Border Grid.Row="3" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="6" 
+                    BorderBrush="{StaticResource Brush.Border.Divider}" 
+                    BorderThickness="0, 0, 0, 2" 
+                    Margin="0, 10, 0, 0" />
+
             <!-- #region Important Board Preferences -->
 
-            <TextBlock Grid.Row="3" Grid.Column="1" Text="Board Thickness" />
-            <TextBox Grid.Row="3" 
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="Board Thickness" Margin="0, 10, 0, 0"/>
+            <TextBox Grid.Row="4" 
                      Grid.Column="2" 
+                     Margin="5, 10, 0, 0"
                      Text="{Binding BoardPreferences.BoardThickness, Mode=TwoWay, StringFormat={}{0}mm, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MmToDecimalConverter}}">
                 <interactivity:Interaction.Behaviors>
                     <behaviors:TextBoxAllowedInputBehavior RegularExpression="^[0-9.\-]+$" />
                 </interactivity:Interaction.Behaviors>
             </TextBox>
 
-            <TextBlock Grid.Row="4" Grid.Column="1" Text="Material" />
-            <ComboBox Grid.Row="4" 
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="Material" />
+            <ComboBox Grid.Row="5" 
                       Grid.Column="2"
                       DisplayMemberPath="Name"
                       ItemsSource="{Binding BoardPreferences.Materials}" 
                       SelectedItem="{Binding BoardPreferences.SelectedMaterial, Mode=TwoWay}" />
-            <TextBlock Grid.Row="4" 
+            <TextBlock Grid.Row="5" 
                        Grid.Column="3" 
                        HorizontalAlignment="Right"
                        Foreground="{StaticResource Brush.TextBlock.CostImpact}"
                        Text="{Binding BoardPreferences.SelectedMaterial.CostImpact, StringFormat={}+${0}}" />
-            <TextBlock Grid.Row="4" 
+            <TextBlock Grid.Row="5" 
                        Grid.Column="4" 
                        HorizontalAlignment="Right"
                        Foreground="{StaticResource Brush.TextBlock.TimeImpact}"
                        Text="{Binding BoardPreferences.SelectedMaterial.TimeImpact, StringFormat={}+{0} days}" />
 
-            <TextBlock Grid.Row="5" Grid.Column="1" Text="Surface Finish" />
-            <ComboBox Grid.Row="5" 
+            <TextBlock Grid.Row="6" Grid.Column="1" Text="Surface Finish" />
+            <ComboBox Grid.Row="6" 
                       Grid.Column="2" 
                       DisplayMemberPath="Name"
                       ItemsSource="{Binding BoardPreferences.SurfaceFinishTypes}" 
                       SelectedItem="{Binding BoardPreferences.SelectedSurfaceFinish, Mode=TwoWay}" />
-            <TextBlock Grid.Row="5" 
+            <TextBlock Grid.Row="6" 
                        Grid.Column="3" 
                        HorizontalAlignment="Right"
                        Foreground="{StaticResource Brush.TextBlock.CostImpact}"
                        Text="{Binding BoardPreferences.SelectedSurfaceFinish.CostImpact, StringFormat={}+${0}}" />
-            <TextBlock Grid.Row="5" 
+            <TextBlock Grid.Row="6" 
                        Grid.Column="4" 
                        HorizontalAlignment="Right"
                        Foreground="{StaticResource Brush.TextBlock.TimeImpact}"
                        Text="{Binding BoardPreferences.SelectedSurfaceFinish.TimeImpact, StringFormat={}+{0} days}" />
 
-            <TextBlock Grid.Row="6" Grid.Column="1" Text="Solder Mask Color" />
-            <ComboBox Grid.Row="6"
+            <TextBlock Grid.Row="7" Grid.Column="1" Text="Solder Mask Color" />
+            <ComboBox Grid.Row="7"
                       Grid.Column="2" 
                       ItemTemplate="{StaticResource ComboBox.ColorPicker.ItemTemplate}"
                       ItemsSource="{Binding BoardPreferences.SolderMaskColors}" 
@@ -171,98 +176,95 @@
 
             <!-- #endregion -->
 
+            <Border Grid.Row="8" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="6" 
+                    BorderBrush="{StaticResource Brush.Border.Divider}" 
+                    BorderThickness="0, 0, 0, 1" 
+                    Margin="0, 10, 0, 0" />
+
             <!-- #region Special Board Preferences -->
 
-            <TextBlock Grid.Row="7" Grid.Column="1" Text="Lead Free" />
-            <ListBox Grid.Row="7" 
+            <TextBlock Grid.Row="9" Grid.Column="1" Text="Lead Free"
+                     Margin="0, 10, 0, 0" />
+            <ListBox Grid.Row="9" 
                      Grid.Column="2" 
+                     Margin="5, 10, 0, 0"
                      AlternationCount="{Binding SpecialPreferences.LeadFreeValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.LeadFreeValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedLeadFree, Mode=TwoWay}"/>
 
-            <TextBlock Grid.Row="8" Grid.Column="1" Text="IPC Class" />
-            <ListBox Grid.Row="8" 
+            <TextBlock Grid.Row="10" Grid.Column="1" Text="IPC Class" />
+            <ListBox Grid.Row="10" 
                      Grid.Column="2" 
                      AlternationCount="{Binding SpecialPreferences.IpcClassValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.IpcClassValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedIpcClass, Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="9" Grid.Column="1" Text="ITAR" />
-            <ListBox Grid.Row="9" 
+            <TextBlock Grid.Row="11" Grid.Column="1" Text="ITAR" />
+            <ListBox Grid.Row="11" 
                      Grid.Column="2" 
                      AlternationCount="{Binding SpecialPreferences.ItarValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.ItarValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedItar, Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="10" Grid.Column="1" Text="Flux type" />
-            <ListBox Grid.Row="10" 
+            <TextBlock Grid.Row="12" Grid.Column="1" Text="Flux type" />
+            <ListBox Grid.Row="12" 
                      Grid.Column="2" 
                      AlternationCount="{Binding SpecialPreferences.FluxTypeValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.FluxTypeValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedFluxType, Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="11" Grid.Column="1" Text="Silkscreen Color" />
-            <ComboBox Grid.Row="11" 
-                     Grid.Column="2" 
-                     ItemTemplate="{StaticResource ComboBox.ColorPicker.ItemTemplate}"
-                     ItemsSource="{Binding SpecialPreferences.SilkscreenColors}" 
-                     SelectedItem="{Binding SpecialPreferences.SelectedSilkscreenColor, Mode=TwoWay}" />
-
-            <TextBlock Grid.Row="12" Grid.Column="1" Text="Cooper Weight on Inner Layers" />
-            <ComboBox Grid.Row="12" 
-                     Grid.Column="2"
-                     DisplayMemberPath="Value"
-                     ItemsSource="{Binding SpecialPreferences.InnerLayerCooperWeights}" 
-                     SelectedItem="{Binding SpecialPreferences.SelectedInnerLayerCooperWeight, Mode=TwoWay}" />
-
-            <TextBlock Grid.Row="13" Grid.Column="1" Text="Cooper Weight on Outer Layers" />
+            <TextBlock Grid.Row="13" Grid.Column="1" Text="Silkscreen Color" />
             <ComboBox Grid.Row="13" 
-                     Grid.Column="2" 
-                     DisplayMemberPath="Value"
-                     ItemsSource="{Binding SpecialPreferences.OuterLayerCooperWeights}" 
-                     SelectedItem="{Binding SpecialPreferences.SelectedOuterLayerCooperWeight, Mode=TwoWay}" />
+                      Grid.Column="2" 
+                      ItemTemplate="{StaticResource ComboBox.ColorPicker.ItemTemplate}"
+                      ItemsSource="{Binding SpecialPreferences.SilkscreenColors}" 
+                      SelectedItem="{Binding SpecialPreferences.SelectedSilkscreenColor, Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="14" Grid.Column="1" Text="Controlled Impendance" />
-            <ListBox Grid.Row="14" 
+            <TextBlock Grid.Row="14" Grid.Column="1" Text="Cooper Weight on Inner Layers" />
+            <ComboBox Grid.Row="14" 
+                      Grid.Column="2"
+                      DisplayMemberPath="Value"
+                      ItemsSource="{Binding SpecialPreferences.InnerLayerCooperWeights}" 
+                      SelectedItem="{Binding SpecialPreferences.SelectedInnerLayerCooperWeight, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="15" Grid.Column="1" Text="Cooper Weight on Outer Layers" />
+            <ComboBox Grid.Row="15" 
+                      Grid.Column="2" 
+                      DisplayMemberPath="Value"
+                      ItemsSource="{Binding SpecialPreferences.OuterLayerCooperWeights}" 
+                      SelectedItem="{Binding SpecialPreferences.SelectedOuterLayerCooperWeight, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="16" Grid.Column="1" Text="Controlled Impendance" />
+            <ListBox Grid.Row="16" 
                      Grid.Column="2" 
                      AlternationCount="{Binding SpecialPreferences.ControlledImpendanceValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.ControlledImpendanceValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedControlledImpendance, Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="15" Grid.Column="1" Text="Tenting for Vias" />
-            <ListBox Grid.Row="15" 
+            <TextBlock Grid.Row="17" Grid.Column="1" Text="Tenting for Vias" />
+            <ListBox Grid.Row="17" 
                      Grid.Column="2" 
                      AlternationCount="{Binding SpecialPreferences.TentingForViasValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.TentingForViasValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedTentingForVias, Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="16" Grid.Column="1" Text="Stackup" />
-            <ListBox Grid.Row="16" 
+            <TextBlock Grid.Row="18" Grid.Column="1" Text="Stackup" />
+            <ListBox Grid.Row="18" 
                      Grid.Column="2" 
                      AlternationCount="{Binding SpecialPreferences.StackupValues.Count, FallbackValue='100'}"
                      ItemsSource="{Binding SpecialPreferences.StackupValues}"
                      SelectedItem="{Binding SpecialPreferences.SelectedStackup, Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="17" Grid.Column="1" Text="Notes" VerticalAlignment="Top" />
-            <TextBox Grid.Row="17" 
+            <TextBlock Grid.Row="19" Grid.Column="1" Text="Notes" VerticalAlignment="Top" />
+            <TextBox Grid.Row="19" 
                      Grid.Column="2" 
                      Grid.ColumnSpan="2"
-                     Style="{StaticResource Memo.TextBox.Style}" 
+                     Style="{StaticResource Memo.TextBox.Style}"
                      Margin="5, 5, 0, 0"/>
 
             <!-- #endregion -->
         </Grid>
-
-        <Grid Grid.Row="1" Margin="0, 10, 0 ,0">
-            <Button Content="Discard to Default" 
-                    Command="{Binding DataContext.ResetCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                    Style="{StaticResource Wide.Button.Style}"
-                    HorizontalAlignment="Left" />
-
-            <Button Content="Save and Continue"
-                    Command="{Binding DataContext.SaveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                    Style="{StaticResource Wide.Button.Style}"
-                    HorizontalAlignment="Right" />
-        </Grid>
-    </Grid>
+    </ScrollViewer>
 </UserControl>

@@ -9,67 +9,71 @@
         xmlns:order="clr-namespace:Decoy.Order" 
         xmlns:decoy="clr-namespace:Decoy"
         WindowStartupLocation="CenterScreen"
-        MinWidth="1221"
-        MinHeight="934"
-        Width="1221"
-        Height="934"
+        Width="973"
+        Height="854"
         mc:Ignorable="d">
     <Window.Resources>
         <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
-    
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <decoy:HeaderView Grid.Row="0" DataContext="{Binding Header}" />
 
-        <Grid Grid.Row="1" Margin="0, 15, 0, 0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            
-            <Expander Grid.Row="0"
-                      Style="{StaticResource Page.Expander.Style}"
+        <Border Grid.Row="1" BorderBrush="{StaticResource Brush.Border.Preferences}" BorderThickness="2">
+            <Expander Style="{StaticResource Page.Expander.Style}"
                       IsExpanded="{Binding IsPreferencesTabExpanded, Mode=TwoWay}">
                 <Expander.Header>
                     <TextBlock Text="Preferences" Style="{StaticResource ExpanderHeader.Textblock.Style}" />
                 </Expander.Header>
-                
+
                 <preferences:PreferencesView DataContext="{Binding Preferences}" />
             </Expander>
+        </Border>
 
-            <Grid Grid.Row="1" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+        <Expander Grid.Row="2" 
+                  Style="{StaticResource Page.Expander.Style}"
+                  IsExpanded="{Binding IsQuoteTabExpanded, Mode=TwoWay}"
+                  Visibility="{Binding IsPreferencesTabExpanded, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+            <Expander.Header>
+                <TextBlock Text="Quote" Style="{StaticResource ExpanderHeader.Textblock.Style}"/>
+            </Expander.Header>
 
-                <Expander Grid.Row="0" 
-                          Style="{StaticResource Page.Expander.Style}"
-                          IsExpanded="{Binding IsQuoteTabExpanded, Mode=TwoWay}"
-                          Visibility="{Binding IsPreferencesTabExpanded, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
-                    <Expander.Header>
-                        <TextBlock Text="Quote" Style="{StaticResource ExpanderHeader.Textblock.Style}"/>
-                    </Expander.Header>
+            <quote:QuoteView DataContext="{Binding Quote}" VerticalAlignment="Stretch" />
+        </Expander>
 
-                    <quote:QuoteView DataContext="{Binding Quote}" VerticalAlignment="Stretch" />
-                </Expander>
+        <Expander Grid.Row="3" 
+                  Style="{StaticResource Page.Expander.Style}"
+                  IsExpanded="{Binding IsOrderTabExpanded, Mode=TwoWay}"
+                  Visibility="{Binding IsPreferencesTabExpanded, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+            <Expander.Header>
+                <TextBlock Text="Order" Style="{StaticResource ExpanderHeader.Textblock.Style}" />
+            </Expander.Header>
 
-                <Expander Grid.Row="1" 
-                          Style="{StaticResource Page.Expander.Style}"
-                          IsExpanded="{Binding IsOrderTabExpanded, Mode=TwoWay}"
-                          Visibility="{Binding IsPreferencesTabExpanded, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
-                    <Expander.Header>
-                        <TextBlock Text="Order" Style="{StaticResource ExpanderHeader.Textblock.Style}" />
-                    </Expander.Header>
+            <order:OrderView DataContext="{Binding Order}" MinHeight="210" />
+        </Expander>
 
-                    <order:OrderView DataContext="{Binding Order}" Height="310" />
-                </Expander>
-            </Grid>
+        <Grid Grid.Row="4" 
+              Margin="0, 10, 0 ,0" 
+              VerticalAlignment="Bottom"
+              Visibility="{Binding IsPreferencesTabExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Button Content="Discard to Default" 
+                    Command="{Binding ResetCommand}"
+                    Style="{StaticResource Wide.Button.Style}"
+                    HorizontalAlignment="Left" />
+
+            <Button Content="Save and Continue"
+                    Command="{Binding SaveCommand}"
+                    Style="{StaticResource Wide.Button.Style}"
+                    HorizontalAlignment="Right" />
         </Grid>
     </Grid>
 </Window>

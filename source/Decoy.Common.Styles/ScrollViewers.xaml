@@ -76,8 +76,8 @@
                         </Grid.RowDefinitions>
                         
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
                         <ScrollContentPresenter Grid.Column="0" CanContentScroll="{TemplateBinding CanContentScroll}" />
