@@ -1,30 +1,36 @@
 ﻿namespace Decoy.Common.Converters
 {
     using System;
+    using System.Globalization;
     using System.Windows.Data;
 
     public class MmToDecimalConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is decimal dec)
             {
                 return dec;
             }
 
-            if (value is string mmDecimal)
+            if (value is string decimalWithExtString)
             {
-                return mmDecimal.EndsWith("mm") 
-                    ? System.Convert.ToDecimal(mmDecimal.Substring(0, mmDecimal.Length - 2))
-                    : System.Convert.ToDecimal(mmDecimal);
+                var trimmedDecimalString = decimalWithExtString.TrimEnd('.', ',', 'm'); 
+
+                if (Decimal.TryParse(trimmedDecimalString, CultureInfo.InvariantCulture, out var parsedDecimal))
+                {
+                    return parsedDecimal;
+                }
+
+                return default(decimal);
             }
 
-            return 0.0M;
+            return value;
         }
     }
 }
