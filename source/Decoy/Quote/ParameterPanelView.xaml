@@ -71,8 +71,8 @@
                                           Style="{StaticResource NoColumnHeaders.Datagrid.Style}"
                                           ItemsSource="{Binding Items}">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Binding="{Binding Operation}" Header="" Width="200"/>
-                                        <DataGridTextColumn Binding="{Binding Value}" Header="" Width="200"/>
+                                        <DataGridTextColumn Binding="{Binding Operation}" Header="" Width="150"/>
+                                        <DataGridTextColumn Binding="{Binding Value}" Header="" Width="150"/>
 
                                         <DataGridTemplateColumn Header="Time Impact" Width="70">
                                             <DataGridTemplateColumn.CellTemplate>

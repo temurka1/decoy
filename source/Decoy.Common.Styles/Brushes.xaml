@@ -13,7 +13,10 @@
     <SolidColorBrush x:Key="Brush.TextBlock.CostImpact" Color="#e28743" />
     <SolidColorBrush x:Key="Brush.TextBlock.TimeImpact" Color="#063970" />
 
-    <SolidColorBrush x:Key="Brush.Expander.Header" Color="#1e81b0" />
-    
-    <SolidColorBrush x:Key="Brush.ScrollBar.Thumb" Color="#1e81b0" />
+    <SolidColorBrush x:Key="Brush.Expander.Header" Color="#2596be" />
+
+    <SolidColorBrush x:Key="Brush.ScrollBar.Thumb" Color="#2596be" />
+
+    <SolidColorBrush x:Key="Brush.MainWindow.Background" Color="#DBE2E9" />
+    <SolidColorBrush x:Key="Brush.Panel.Background" Color="White" />
 </ResourceDictionary>
